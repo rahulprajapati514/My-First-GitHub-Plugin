@@ -29,3 +29,33 @@ function my_plugin_page() {
     echo '<h1>Hello from plugin page</h1>';
 }
 
+/**
+ * Register settings page
+ */
+add_action('admin_menu', 'my_plugin_settings_menu');
+
+function my_plugin_settings_menu() {
+    add_options_page(
+        'My Plugin Settings',
+        'My Plugin',
+        'manage_options',
+        'my-plugin-settings',
+        'my_plugin_settings_page'
+    );
+}
+
+function my_plugin_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>My Plugin Settings</h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields('my_plugin_settings');
+            do_settings_sections('my-plugin-settings');
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
