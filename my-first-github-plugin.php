@@ -13,3 +13,19 @@ defined('ABSPATH') || exit;
 add_action('admin_notices', function () {
     echo '<div class="notice notice-success"><p>GitHub Plugin Active!</p></div>';
 });
+
+// Add admin menu
+add_action('admin_menu', function () {
+    add_menu_page(
+        'My Plugin',
+        'My Plugin',
+        'manage_options',
+        'my-plugin',
+        'my_plugin_page'
+    );
+});
+
+function my_plugin_page() {
+    echo '<h1>Hello from plugin page</h1>';
+}
+
